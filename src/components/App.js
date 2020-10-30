@@ -1,11 +1,12 @@
-import '../style/style.css';
+import { Route } from 'react-router-dom'
 import Planets from './Planets/Planets';
+
+import '../style/style.css';
 
 function App() {
   return (
     <div className="App">
-      <Planets/>
-     
+      <Route exact path="/:page" component={Planets}/>
     </div>
   );
 }

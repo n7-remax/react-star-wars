@@ -8,3 +8,12 @@
     text-decoration: none;
     color: unset;
 }
+
+.planets-buttons {
+    display: flex;
+    justify-content: center;
+}
+.planets-buttons a {
+    margin: 20px 8px;
+    text-decoration: none;
+}
