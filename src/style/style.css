@@ -32,3 +32,8 @@
     background-color: white;
     padding: 20px;
 }
+
+.welcome-page {
+    display: flex;
+    justify-content: center;
+}
