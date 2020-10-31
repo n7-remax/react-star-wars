@@ -20,6 +20,7 @@ const styles = theme => ({
 class Planets extends Component {
     state = {
         initialPage: this.props.match.params.page,
+        count: null,
         nextPage: 1,
         prevPage: null,
         currentPage: 1,
@@ -70,7 +71,7 @@ class Planets extends Component {
 
     render() {
         const { classes } = this.props;
-        console.log(this.props.match)
+        const maxPages = Math.ceil(this.state.count / 10);
         const PlanetsList = this.state.planets.map((planet, i) => {
             return (
                 <Card className={classes.root} key={i}>
@@ -96,12 +97,12 @@ class Planets extends Component {
                     {PlanetsList}
                 </div>
                 <div className="planets-buttons">
-                    <Link to={`/${+this.state.currentPage - 1}`}>
+                    <Link to={`/${this.state.currentPage > 1 ? +this.state.currentPage - 1 : this.state.currentPage}`}>
                         <Button variant="contained" color="primary" disabled={this.state.prevPage ? false : true}>
                             Prev
                         </Button>
                     </Link>
-                    <Link to={`/${+this.state.currentPage + 1}`}>
+                    <Link to={`/${this.state.currentPage < maxPages ? +this.state.currentPage + 1 : this.state.currentPage}`}>
                         <Button variant="contained" color="primary" disabled={this.state.nextPage ? false : true}>
                             Next
                         </Button>
