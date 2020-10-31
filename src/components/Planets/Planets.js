@@ -10,7 +10,7 @@ import axios from 'axios';
 const styles = theme => ({
     root: {
         margin: 10,
-        flex: '0 33%',
+        flex: '0 18%',
     },
     pos: {
         marginBottom: 12,
@@ -33,24 +33,19 @@ class Planets extends Component {
     }
 
     componentDidMount() {
-        console.log('mounted')
-        console.log(this.props.match.params.page)
         this.getPlanets(`planets/?page=${this.state.initialPage}`).then(res => {
-            console.log(res)
             this.setState({
                 count: res.data.count,
                 nextPage: res.data.next,
                 prevPage: res.data.previous,
                 planets: res.data.results
             })
-            console.log(this.state.planets)
         })
     }
     // if currentPage is changed, update component
     componentDidUpdate(nextProps, nextState) {
         if (this.state.currentPage !== nextState.currentPage) {
             this.getPlanets(`planets/?page=${this.state.currentPage}`).then(res => {
-                console.log(res)
                 this.setState({
                     count: res.data.count,
                     nextPage: res.data.next,
@@ -58,7 +53,6 @@ class Planets extends Component {
                     planets: res.data.results
                 })
             })
-            console.log('update')
         }
 
     }

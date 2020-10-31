@@ -1,9 +1,9 @@
 import { Route } from 'react-router-dom'
 import Planets from './Planets/Planets';
 import PlanetDescription from './Planets/PlanetDescription/PlanetDescription';
+import Header from './Header/Header';
 
 import '../style/style.css';
-import Header from './Header/Header';
 
 function App() {
   return (
