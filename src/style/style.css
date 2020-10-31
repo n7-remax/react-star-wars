@@ -28,3 +28,7 @@
     width: auto;
     height: 200px;
 }
+.planet-description-box {
+    background-color: white;
+    padding: 20px;
+}

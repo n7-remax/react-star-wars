@@ -27,9 +27,7 @@ class PlanetDescription extends Component {
     }
 
     componentDidMount() {
-        console.log('planet desc mounted')
         this.getPlanetDescription(`planets/${this.state.planetId}/`).then(res => {
-            console.log(res)
             this.setState({
                 name: res.data.name,
                 rotationPeriod: res.data.rotation_period,
@@ -40,19 +38,13 @@ class PlanetDescription extends Component {
                 population: res.data.population,
             })
             if (Array.isArray(res.data.residents) && res.data.residents.length) {
-                console.log('true')
-                const peopleId = res.data.residents.map(item => item.match(/(\d+)/)[0])
-                peopleId.forEach(element => {
-                    this.getResidents(`people/${element}/`).then(res => {
-                        this.setState({
-                            residents: [...this.state.residents, res.data.name]
-                        })
+                const peopleId = res.data.residents.map(item => item.match(/(\d+)/)[0]);
+                Promise.all(peopleId.map(element => this.getResidents(`people/${element}/`))).then(res => {
+                    this.setState({
+                        residents: res.map(e => e.data.name).join(", ")
                     })
-
-                });
-
+                })
             } else {
-                console.log('false')
                 this.setState({
                     residents: "No data available"
                 })
@@ -64,7 +56,7 @@ class PlanetDescription extends Component {
         const planet = this.state;
         return (
             <div className="planet-description">
-                <Container maxWidth='sm'>
+                <Container maxWidth='sm' className="planet-description-box">
                     <h2>{planet.name}</h2>
                     <div className="planet-description-list">
                         <p> Rotation Period: {planet.rotationPeriod}</p>
