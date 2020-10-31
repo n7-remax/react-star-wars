@@ -74,7 +74,7 @@ class Planets extends Component {
         const PlanetsList = this.state.planets.map((planet, i) => {
             return (
                 <Card className={classes.root} key={i}>
-                    <a href="/" className="card-link">
+                    <Link to={`/planet/${planet.url.match(/(\d+)/)[0]}`} className="card-link">
                         <CardContent>
                             <Typography variant="h5" component="h2">
                                 {planet.name}
@@ -86,7 +86,7 @@ class Planets extends Component {
                                 Population: {planet.population}
                             </Typography>
                         </CardContent>
-                    </a>
+                    </Link>
                 </Card>
             )
         })
