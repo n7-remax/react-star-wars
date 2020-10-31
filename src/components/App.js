@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <Route exact path="/:page" component={Planets} />
-      <Route exact path="/planet/:url" component={PlanetDescription} />
+      <Route exact path="/react-star-wars/planets/:page" component={Planets} />
+      <Route exact path="/react-star-wars/planet/:url" component={PlanetDescription} />
     </div>
   );
 }

@@ -69,7 +69,7 @@ class Planets extends Component {
         const PlanetsList = this.state.planets.map((planet, i) => {
             return (
                 <Card className={classes.root} key={i}>
-                    <Link to={`/planet/${planet.url.match(/(\d+)/)[0]}`} className="card-link">
+                    <Link to={`/react-star-wars/planet/${planet.url.match(/(\d+)/)[0]}`} className="card-link">
                         <CardContent>
                             <Typography variant="h5" component="h2">
                                 {planet.name}
@@ -91,12 +91,12 @@ class Planets extends Component {
                     {PlanetsList}
                 </div>
                 <div className="planets-buttons">
-                    <Link to={`/${this.state.currentPage > 1 ? +this.state.currentPage - 1 : this.state.currentPage}`}>
+                    <Link to={`/react-star-wars/planets/${this.state.currentPage > 1 ? +this.state.currentPage - 1 : this.state.currentPage}`}>
                         <Button variant="contained" color="primary" disabled={this.state.prevPage ? false : true}>
                             Prev
                         </Button>
                     </Link>
-                    <Link to={`/${this.state.currentPage < maxPages ? +this.state.currentPage + 1 : this.state.currentPage}`}>
+                    <Link to={`/react-star-wars/planets/${this.state.currentPage < maxPages ? +this.state.currentPage + 1 : this.state.currentPage}`}>
                         <Button variant="contained" color="primary" disabled={this.state.nextPage ? false : true}>
                             Next
                         </Button>
