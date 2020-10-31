@@ -17,3 +17,14 @@
     margin: 20px 8px;
     text-decoration: none;
 }
+
+.header {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.logo {
+    width: auto;
+    height: 200px;
+}
