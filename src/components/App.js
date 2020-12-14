@@ -4,7 +4,7 @@ import PlanetDescription from './Planets/PlanetDescription/PlanetDescription';
 import Header from './Header/Header';
 import WelcomePage from './WelcomePage/WelcomePage';
 
-import '../style/style.css';
+import '../style/style.scss';
 
 function App() {
   return (
