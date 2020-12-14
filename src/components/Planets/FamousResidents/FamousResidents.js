@@ -2,7 +2,7 @@ import { Component } from "react";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 
-class PlanetDescription extends Component {
+class FamousResidents extends Component {
   state = {
     planetId: this.props.match.params.url,
     name: "",
@@ -76,4 +76,4 @@ class PlanetDescription extends Component {
   }
 }
 
-export default PlanetDescription;
+export default FamousResidents;

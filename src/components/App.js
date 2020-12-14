@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import Planets from "./Planets/Planets";
-import PlanetDescription from "./Planets/PlanetDescription/PlanetDescription";
+import FamousResidents from "./Planets/FamousResidents/FamousResidents";
 import Header from "./Header/Header";
 import WelcomePage from "./WelcomePage/WelcomePage";
 
@@ -15,7 +15,7 @@ function App() {
       <Route
         exact
         path="/react-star-wars/planet/:url"
-        component={PlanetDescription}
+        component={FamousResidents}
       />
     </div>
   );
