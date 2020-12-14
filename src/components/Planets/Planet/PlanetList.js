@@ -8,6 +8,7 @@ const PlanetList = (props) =>
         key={index}
         name={planet.name}
         climate={planet.climate}
+        clicked={() => props.clicked(planet.url.match(/(\d+)/)[0])}
       />
     );
   });

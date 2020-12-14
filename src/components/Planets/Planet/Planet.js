@@ -2,7 +2,7 @@ import tattoine from "../../../assets/image/tattoine.png";
 
 const Planet = (props) => {
   return (
-    <div className="planet-item" key={props.index} onClick={props.click}>
+    <div className="planet-item" key={props.index} onClick={props.clicked}>
       <img src={tattoine} alt={props.name} />
       <div className="preview">
         <h2>{props.name}</h2>

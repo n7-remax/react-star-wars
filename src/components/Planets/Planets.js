@@ -137,6 +137,7 @@ class Planets extends Component {
           </Link>
           <PlanetList
           planets={this.state.planets}
+          clicked={this.onPlanetSelect}
           />
           <Link
             to={`/react-star-wars/planets/${
