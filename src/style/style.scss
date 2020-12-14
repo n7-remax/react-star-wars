@@ -1,39 +1,47 @@
-.planets-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 .card-link {
-    text-decoration: none;
-    color: unset;
-}
-
-.planets-buttons {
-    display: flex;
-    justify-content: center;
+  text-decoration: none;
+  color: unset;
 }
 .planets-buttons a {
-    margin: 20px 8px;
-    text-decoration: none;
+  margin: 20px 8px;
+  text-decoration: none;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
 }
 
 .logo {
-    width: auto;
-    height: 200px;
+  width: auto;
+  height: 200px;
 }
 .planet-description-box {
-    background-color: white;
-    padding: 20px;
+  background-color: white;
+  padding: 20px;
 }
 
 .welcome-page {
+  display: flex;
+  justify-content: center;
+}
+.active {
+    opacity: 1;
+}
+.planets-list {
     display: flex;
-    justify-content: center;
+    text-decoration: none;
+  .planets-item {
+      opacity: 0.7;
+      flex: 1;
+    h2,
+    p {
+      color: white;
+    }
+    img {
+        width: 25%;
+        height: auto;
+    }
+  }
 }

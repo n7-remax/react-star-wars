@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
-import { withStyles } from "@material-ui/core/styles";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
-const styles = theme => ({
-    root: {
-        margin: 10,
-        flex: '0 18%',
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
+import tattoine from '../../assets/image/tattoine.png'
 
 class Planets extends Component {
     state = {
@@ -64,38 +52,34 @@ class Planets extends Component {
     }
 
     render() {
-        const { classes } = this.props;
         const maxPages = Math.ceil(this.state.count / 10);
-        const PlanetsList = this.state.planets.map((planet, i) => {
+        const PlanetsList = this.state.planets.slice(0,4).map((planet, i) => {
             return (
-                <Card className={classes.root} key={i}>
-                    <Link to={`/react-star-wars/planet/${planet.url.match(/(\d+)/)[0]}`} className="card-link">
-                        <CardContent>
-                            <Typography variant="h5" component="h2">
+                <div className="planets-item" key={i}>
+                    {/* <Link to={`/react-star-wars/planet/${planet.url.match(/(\d+)/)[0]}`} className="card-link">
+                    </Link> */}
+                        <img src={tattoine} alt={planet.name}/>
+                        <div className="preview">
+                            <h2>
                                 {planet.name}
-                            </Typography>
-                            <Typography className={classes.pos} color="textSecondary">
+                            </h2>
+                            <p>
                                 {planet.climate}
-                            </Typography>
-                            <Typography variant="body2" component="p">
-                                Population: {planet.population}
-                            </Typography>
-                        </CardContent>
-                    </Link>
-                </Card>
+                            </p>
+                            </div>
+                    
+                </div>
             )
         })
         return (
             <div className="planets">
                 <div className="planets-list">
-                    {PlanetsList}
-                </div>
-                <div className="planets-buttons">
-                    <Link to={`/react-star-wars/planets/${this.state.currentPage > 1 ? +this.state.currentPage - 1 : this.state.currentPage}`}>
+                <Link to={`/react-star-wars/planets/${this.state.currentPage > 1 ? +this.state.currentPage - 1 : this.state.currentPage}`}>
                         <Button variant="contained" color="primary" disabled={this.state.prevPage ? false : true}>
                             Prev
                         </Button>
                     </Link>
+                    {PlanetsList}
                     <Link to={`/react-star-wars/planets/${this.state.currentPage < maxPages ? +this.state.currentPage + 1 : this.state.currentPage}`}>
                         <Button variant="contained" color="primary" disabled={this.state.nextPage ? false : true}>
                             Next
@@ -108,4 +92,4 @@ class Planets extends Component {
 }
 
 
-export default withStyles(styles, { withTheme: true })(Planets);
+export default Planets;
