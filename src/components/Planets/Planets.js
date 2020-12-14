@@ -4,6 +4,8 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 
 import tattoine from "../../assets/image/tattoine.png";
+import PlanetList from "./Planet/PlanetList";
+import Planet from "./Planet/Planet";
 
 class Planets extends Component {
   state = {
@@ -65,23 +67,23 @@ class Planets extends Component {
 
   render() {
     const maxPages = Math.ceil(this.state.count / 10);
-    const PlanetsList = this.state.planets.slice(0, 5).map((planet, i) => {
-      return (
-        <div
-          className="planets-item"
-          key={i}
-          onClick={() => this.onPlanetSelect(planet.url.match(/(\d+)/)[0])}
-        >
-          {/* <Link to={`/react-star-wars/planet/${planet.url.match(/(\d+)/)[0]}`} className="card-link">
-                    </Link> */}
-          <img src={tattoine} alt={planet.name} />
-          <div className="preview">
-            <h2>{planet.name}</h2>
-            <p>{planet.climate}</p>
-          </div>
-        </div>
-      );
-    });
+    // const PlanetsList = this.state.planets.slice(0, 5).map((planet, i) => {
+    //   return (
+    //     <div
+    //       className="planets-item"
+    //       key={i}
+    //       onClick={() => this.onPlanetSelect(planet.url.match(/(\d+)/)[0])}
+    //     >
+    //       {/* <Link to={`/react-star-wars/planet/${planet.url.match(/(\d+)/)[0]}`} className="card-link">
+    //                 </Link> */}
+    //       <img src={tattoine} alt={planet.name} />
+    //       <div className="preview">
+    //         <h2>{planet.name}</h2>
+    //         <p>{planet.climate}</p>
+    //       </div>
+    //     </div>
+    //   );
+    // });
     return (
       <div className="planets">
         <div className="planets-preview">
@@ -133,7 +135,9 @@ class Planets extends Component {
               Prev
             </Button>
           </Link>
-          {PlanetsList}
+          <PlanetList
+          planets={this.state.planets}
+          />
           <Link
             to={`/react-star-wars/planets/${
               this.state.currentPage < maxPages
