@@ -1,18 +1,14 @@
 import { Component } from "react";
-import Container from "@material-ui/core/Container";
 import axios from "axios";
+
+import ResidentsList from "./ResidentsList";
+import noDataImg from "../../../assets/image/no-data.jpeg"
 
 class FamousResidents extends Component {
   state = {
     planetId: this.props.match.params.url,
     name: "",
-    rotationPeriod: "",
-    diameter: "",
-    climate: "",
-    gravity: "",
-    terrain: "",
-    population: "",
-    residents: [],
+    residents: null,
   };
 
   getPlanetDescription = async (id) => {
@@ -29,12 +25,6 @@ class FamousResidents extends Component {
     this.getPlanetDescription(`planets/${this.state.planetId}/`).then((res) => {
       this.setState({
         name: res.data.name,
-        rotationPeriod: res.data.rotation_period,
-        diameter: res.data.diameter,
-        climate: res.data.climate,
-        gravity: res.data.gravity,
-        terrain: res.data.terrain,
-        population: res.data.population,
       });
       if (Array.isArray(res.data.residents) && res.data.residents.length) {
         const peopleId = res.data.residents.map(
@@ -43,13 +33,10 @@ class FamousResidents extends Component {
         Promise.all(
           peopleId.map((element) => this.getResidents(`people/${element}/`))
         ).then((res) => {
+          console.log(res)
           this.setState({
-            residents: res.map((e) => e.data.name).join(", "),
+            residents: res.map((e) => e.data.name),
           });
-        });
-      } else {
-        this.setState({
-          residents: "No data available",
         });
       }
     });
@@ -57,20 +44,15 @@ class FamousResidents extends Component {
 
   render() {
     const planet = this.state;
+    console.log(planet.residents);
     return (
-      <div className="planet-description">
-        <Container maxWidth="sm" className="planet-description-box">
-          <h2>{planet.name}</h2>
-          <div className="planet-description-list">
-            <p> Rotation Period: {planet.rotationPeriod}</p>
-            <p> Diameter: {planet.diameter}</p>
-            <p> Climate: {planet.climate}</p>
-            <p> Gravity: {planet.gravity}</p>
-            <p> Terrain: {planet.terrain}</p>
-            <p> Population: {planet.population}</p>
-            <p> Residents: {planet.residents}</p>
-          </div>
-        </Container>
+      <div className="famous-residents">
+        <h2>{planet.name}</h2>
+        <div className="famous-residents-list">
+          {planet.residents === null ? <img src={noDataImg}/> : (
+            <ResidentsList residents={planet.residents} />
+          )}
+        </div>
       </div>
     );
   }
