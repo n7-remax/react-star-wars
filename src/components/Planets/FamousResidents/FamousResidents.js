@@ -1,14 +1,14 @@
 import { Component } from "react";
+import Loader from "react-loader-spinner";
 import axios from "axios";
 
 import ResidentsList from "./ResidentsList";
-import noDataImg from "../../../assets/image/no-data.jpeg"
-
 class FamousResidents extends Component {
   state = {
     planetId: this.props.match.params.url,
     name: "",
     residents: null,
+    isResidentsLoaded: false,
   };
 
   getPlanetDescription = async (id) => {
@@ -33,9 +33,10 @@ class FamousResidents extends Component {
         Promise.all(
           peopleId.map((element) => this.getResidents(`people/${element}/`))
         ).then((res) => {
-          console.log(res)
+          console.log(res);
           this.setState({
             residents: res.map((e) => e.data.name),
+            isResidentsLoaded: true,
           });
         });
       }
@@ -44,15 +45,18 @@ class FamousResidents extends Component {
 
   render() {
     const planet = this.state;
-    console.log(planet.residents);
     return (
       <div className="famous-residents">
-        <h2>{planet.name}</h2>
-        <div className="famous-residents-list">
-          {planet.residents === null ? <img src={noDataImg}/> : (
+        <h2 className="famous-residents-heading">{planet.name}</h2>
+        {planet.isResidentsLoaded ? (
+          <div className="famous-residents-list">
             <ResidentsList residents={planet.residents} />
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="loader-container">
+            <Loader type="Circles" color="#00BFFF" height={80} width={80} />
+          </div>
+        )}
       </div>
     );
   }
