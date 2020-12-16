@@ -63,32 +63,39 @@
     }
   }
 }
-.planets-list {
+.planets-list-wrapper {
   display: flex;
-  text-decoration: none;
+  align-items: center;
   a {
     margin: 0 40px;
   }
-  .planet-item {
-    opacity: 0.7;
+  .planets-list {
     display: flex;
-    flex: 1;
-    cursor: pointer;
-    transition: ease-in-out 0.5s;
-    h2,
-    p {
-      color: white;
+    flex-wrap: wrap;
+    text-decoration: none;
+    
+    .planet-item {
+      opacity: 0.7;
+      display: flex;
+      flex: 20%;
+      cursor: pointer;
+      transition: ease-in-out 0.5s;
+      h2,
+      p {
+        color: white;
+      }
+      img {
+        width: 100px;
+        height: auto;
+      }
     }
-    img {
-      width: 100px;
-      height: auto;
+    .active {
+      opacity: 1;
+      transition: ease-in-out 0.5;
     }
-  }
-  .active {
-    opacity: 1;
-    transition: ease-in-out 0.5;
   }
 }
+
 .btn-disabled {
   opacity: 0.5;
   cursor: default;

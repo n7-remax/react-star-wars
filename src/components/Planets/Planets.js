@@ -38,8 +38,8 @@ class Planets extends Component {
     this.onPlanetSelect(1);
   }
   // if currentPage is changed, update component
-  componentDidUpdate(nextProps, nextState) {
-    if (this.state.currentPage !== nextState.currentPage) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.currentPage !== prevState.currentPage) {
       console.log("updated");
       this.getPlanets(`planets/?page=${this.state.currentPage}`).then((res) => {
         this.setState({
@@ -117,7 +117,8 @@ class Planets extends Component {
           </div>
         )}
         {this.state.planetsIsLoaded && this.state.selectedPlanetIsLoaded ? (
-          <div className="planets-list">
+          <div className="planets-list-wrapper">
+            
             <Link
               to={`/react-star-wars/planets/${
                 this.state.currentPage > 1
@@ -134,12 +135,13 @@ class Planets extends Component {
                 disabled={this.state.prevPage ? false : true}
               ></div>
             </Link>
-
+            <div className="planets-list">
             <PlanetList
               selectedPlanet={this.state.selectedPlanet.url.match(/(\d+)/)[0]}
               planets={this.state.planets}
               clicked={this.onPlanetSelect}
             />
+            </div>
 
             <Link
               to={`/react-star-wars/planets/${

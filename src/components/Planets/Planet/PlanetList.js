@@ -2,7 +2,7 @@ import React from "react";
 import Planet from "./Planet";
 
 const PlanetList = (props) =>
-  props.planets.slice(0,5).map((planet) => {
+  props.planets.map((planet) => {
     return (
       <Planet
         key={planet.url.match(/(\d+)/)[0]}
