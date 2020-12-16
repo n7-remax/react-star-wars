@@ -75,9 +75,7 @@
     display: flex;
     flex: 1;
     cursor: pointer;
-    .active {
-      opacity: 1;
-    }
+    transition: ease-in-out 0.5s;
     h2,
     p {
       color: white;
@@ -86,6 +84,10 @@
       width: 100px;
       height: auto;
     }
+  }
+  .active {
+    opacity: 1;
+    transition: ease-in-out 0.5;
   }
 }
 .btn-disabled {

@@ -14,6 +14,7 @@ class Planets extends Component {
     currentPage: 1,
     planets: [],
     selectedPlanet: [],
+    isLoaded: false,
   };
 
   getPlanets = async (page) => {
@@ -53,6 +54,7 @@ class Planets extends Component {
       console.log(res);
       this.setState({
         selectedPlanet: res.data,
+        isLoaded: true,
       });
     });
   };
@@ -125,12 +127,25 @@ class Planets extends Component {
                 : this.state.currentPage
             }`}
           >
-            <div className={this.state.prevPage?"planet-btn btn-prev": "planet-btn btn-prev btn-disabled" } disabled={this.state.prevPage ? false : true}></div>
+            <div
+              className={
+                this.state.prevPage
+                  ? "planet-btn btn-prev"
+                  : "planet-btn btn-prev btn-disabled"
+              }
+              disabled={this.state.prevPage ? false : true}
+            ></div>
           </Link>
-          <PlanetList
-          planets={this.state.planets}
-          clicked={this.onPlanetSelect}
-          />
+          {this.state.isLoaded ? (
+            <PlanetList
+              selectedPlanet={this.state.selectedPlanet.url.match(/(\d+)/)[0]}
+              planets={this.state.planets}
+              clicked={this.onPlanetSelect}
+            />
+          ) : (
+            "Loading"
+          )}
+
           <Link
             to={`/react-star-wars/planets/${
               this.state.currentPage < maxPages
@@ -138,7 +153,14 @@ class Planets extends Component {
                 : this.state.currentPage
             }`}
           >
-            <div className={this.state.nextPage?"planet-btn btn-next": "planet-btn btn-next btn-disabled" } disabled={this.state.nextPage ? false : true}></div>
+            <div
+              className={
+                this.state.nextPage
+                  ? "planet-btn btn-next"
+                  : "planet-btn btn-next btn-disabled"
+              }
+              disabled={this.state.nextPage ? false : true}
+            ></div>
           </Link>
         </div>
       </div>
