@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
 import axios from "axios";
 
 import tattoine from "../../assets/image/tattoine.png";
 import PlanetList from "./Planet/PlanetList";
-import Planet from "./Planet/Planet";
 
 class Planets extends Component {
   state = {
@@ -127,13 +125,7 @@ class Planets extends Component {
                 : this.state.currentPage
             }`}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={this.state.prevPage ? false : true}
-            >
-              Prev
-            </Button>
+            <div className={this.state.prevPage?"planet-btn btn-prev": "planet-btn btn-prev btn-disabled" } disabled={this.state.prevPage ? false : true}></div>
           </Link>
           <PlanetList
           planets={this.state.planets}
@@ -146,13 +138,7 @@ class Planets extends Component {
                 : this.state.currentPage
             }`}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={this.state.nextPage ? false : true}
-            >
-              Next
-            </Button>
+            <div className={this.state.nextPage?"planet-btn btn-next": "planet-btn btn-next btn-disabled" } disabled={this.state.nextPage ? false : true}></div>
           </Link>
         </div>
       </div>
