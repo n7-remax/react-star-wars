@@ -7,6 +7,11 @@ function Header() {
       <Link to="/react-star-wars">
         <img src={logo} alt="star-wars-logo" className="logo" />
       </Link>
+      <nav className="header-nav">
+        <Link to="/react-star-wars/planets/1">Planets</Link>
+        <Link to="/react-star-wars/planets/1" aria-disabled>Vehicles</Link>
+        <Link to="/react-star-wars/planets/1">Starships</Link>
+      </nav>
     </header>
   );
 }
