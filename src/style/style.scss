@@ -12,6 +12,15 @@
   text-align: center;
 }
 
+.soon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 60px;
+}
+
 // Header
 .header {
   display: flex;
