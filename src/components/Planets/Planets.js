@@ -25,6 +25,7 @@ class Planets extends Component {
   };
 
   componentDidMount() {
+    console.log("mounted")
     this.getPlanets(`planets/?page=${this.state.initialPage}`).then((res) => {
       console.log(res);
       this.setState({
@@ -32,6 +33,7 @@ class Planets extends Component {
         nextPage: res.data.next,
         prevPage: res.data.previous,
         planets: res.data.results,
+        selectedPlanet: res.data.results[0],
         planetsIsLoaded: true,
       });
     });
