@@ -9,7 +9,7 @@ function Header() {
       </Link>
       <nav className="header-nav">
         <Link to="/react-star-wars/planets/1">Planets</Link>
-        <Link to="/react-star-wars/soon">Vehicles</Link>
+        <Link to="/react-star-wars/vehicles/1">Vehicles</Link>
         <Link to="/react-star-wars/soon">Starships</Link>
       </nav>
     </header>
