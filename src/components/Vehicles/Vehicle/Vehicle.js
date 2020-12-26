@@ -6,7 +6,6 @@ const Vehicle = (props) => {
       <img src={tattoine} alt={props.name} />
       <div className="preview">
         <h2>{props.name}</h2>
-        <p>{props.climate}</p>
       </div>
     </div>
   );
