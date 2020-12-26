@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import Loader from "react-loader-spinner";
+
+import tattoine from "../../assets/image/tattoine.png";
+import VehicleList from "./Vehicle/VehicleList";
 
 class Vehicles extends Component {
   state = {
@@ -32,13 +37,13 @@ class Vehicles extends Component {
         vehiclesIsLoaded: true,
       });
     });
-    this.onVehicleSelect(1);
+    this.onVehicleSelect(4);
   }
   //   if currentPage is changed, update component
   componentDidUpdate(prevProps, prevState) {
     if (this.state.currentPage !== prevState.currentPage) {
       console.log("updated");
-      this.getPlanets(`vehicles/?page=${this.state.currentPage}`).then(
+      this.getVehicles(`vehicles/?page=${this.state.currentPage}`).then(
         (res) => {
           this.setState({
             count: res.data.count,
@@ -68,7 +73,100 @@ class Vehicles extends Component {
   }
 
   render() {
-    return <div className="vehicles">Vehicles</div>;
+    const maxPages = Math.ceil(this.state.count / 10);
+    return (
+      <div className="planets">
+        {this.state.selectedVehicleIsLoaded ? (
+          <div className="planets-preview">
+            <img src={tattoine} alt={this.state.selectedVehicle.name} />
+            <div className="planets-preview-desc">
+              <h2>{this.state.selectedVehicle.name}</h2>
+              <ul>
+                <li>Model: {this.state.selectedVehicle.model}</li>
+                <li>Manufacturer: {this.state.selectedVehicle.manufacturer}</li>
+                <li>Length: {this.state.selectedVehicle.length}</li>
+                <li>
+                  Max Atmosphering Speed:{" "}
+                  {this.state.selectedVehicle.max_atmosphering_speed}
+                </li>
+                <li>Crew: {this.state.selectedVehicle.crew}</li>
+                <li>Passengers: {this.state.selectedVehicle.passengers}</li>
+                <li>
+                  Cargo capacity: {this.state.selectedVehicle.cargo_capacity}
+                </li>
+
+                <li>
+                  Vehicle Class: {this.state.selectedVehicle.vehicle_class}
+                </li>
+
+                <li>
+                  Cost in credits: {this.state.selectedVehicle.cost_in_credits}
+                </li>
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <div className="loader-container">
+            <Loader type="Circles" color="#00BFFF" height={80} width={80} />
+          </div>
+        )}
+        {this.state.vehiclesIsLoaded && this.state.selectedVehicleIsLoaded ? (
+          <div className="planets-list-wrapper">
+            <Link
+              to={`/react-star-wars/vehicles/${
+                this.state.currentPage > 1
+                  ? +this.state.currentPage - 1
+                  : this.state.currentPage
+              }`}
+            >
+              <div
+                className={
+                  this.state.prevPage
+                    ? "planet-btn btn-prev"
+                    : "planet-btn btn-prev btn-disabled"
+                }
+                disabled={this.state.prevPage ? false : true}
+              ></div>
+            </Link>
+            <div className="planets-list">
+              <VehicleList
+                selectedVehicle={
+                  this.state.selectedVehicle.url.match(/(\d+)/)[0]
+                }
+                vehicles={this.state.vehicles}
+                clicked={this.onVehicleSelect}
+              />
+            </div>
+
+            <Link
+              to={`/react-star-wars/vehicles/${
+                this.state.currentPage < maxPages
+                  ? +this.state.currentPage + 1
+                  : this.state.currentPage
+              }`}
+            >
+              <div
+                className={
+                  this.state.nextPage
+                    ? "planet-btn btn-next"
+                    : "planet-btn btn-next btn-disabled"
+                }
+                disabled={this.state.nextPage ? false : true}
+              ></div>
+            </Link>
+          </div>
+        ) : (
+          <div className="loader-container">
+            <Loader
+              type="BallTriangle"
+              color="#00BFFF"
+              height={80}
+              width={80}
+            />
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
