@@ -75,9 +75,9 @@ class Planets extends Component {
     return (
       <div className="planets">
         {this.state.selectedPlanetIsLoaded ? (
-          <div className="planets-preview">
+          <div className="component-preview">
             <img src={tattoine} alt={this.state.selectedPlanet.name} />
-            <div className="planets-preview-desc">
+            <div className="component-preview-desc">
               <h2>{this.state.selectedPlanet.name}</h2>
               <ul>
                 <li>Terrain: {this.state.selectedPlanet.terrain}</li>
@@ -94,7 +94,7 @@ class Planets extends Component {
                 </li>
                 <li>Population: {this.state.selectedPlanet.orbital_period}</li>
               </ul>
-              <div className="planets-preview-btn">
+              <div className="component-preview-btn">
                 {typeof this.state.selectedPlanet.residents !== "undefined" &&
                 this.state.selectedPlanet.residents.length > 0 ? (
                   <Link
@@ -119,7 +119,7 @@ class Planets extends Component {
           </div>
         )}
         {this.state.planetsIsLoaded && this.state.selectedPlanetIsLoaded ? (
-          <div className="planets-list-wrapper">
+          <div className="list-wrapper">
             
             <Link
               to={`/react-star-wars/planets/${
@@ -131,13 +131,13 @@ class Planets extends Component {
               <div
                 className={
                   this.state.prevPage
-                    ? "planet-btn btn-prev"
-                    : "planet-btn btn-prev btn-disabled"
+                    ? "control-btn btn-prev"
+                    : "control-btn btn-prev btn-disabled"
                 }
                 disabled={this.state.prevPage ? false : true}
               ></div>
             </Link>
-            <div className="planets-list">
+            <div className="components-list">
             <PlanetList
               selectedPlanet={this.state.selectedPlanet.url.match(/(\d+)/)[0]}
               planets={this.state.planets}
@@ -155,8 +155,8 @@ class Planets extends Component {
               <div
                 className={
                   this.state.nextPage
-                    ? "planet-btn btn-next"
-                    : "planet-btn btn-next btn-disabled"
+                    ? "control-btn btn-next"
+                    : "control-btn btn-next btn-disabled"
                 }
                 disabled={this.state.nextPage ? false : true}
               ></div>

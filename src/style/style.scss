@@ -44,8 +44,8 @@
   }
 }
 
-// Planets
-.planets-preview {
+// Planets Vehicles Starships styles
+.component-preview {
   display: flex;
   justify-content: center;
   color: white;
@@ -61,7 +61,7 @@
     letter-spacing: 22px;
     margin: 60px 0px;
   }
-  .planets-preview-desc {
+  .component-preview-desc {
     ul {
       list-style: none;
       padding: 0;
@@ -71,7 +71,7 @@
       }
     }
   }
-  .planets-preview-btn {
+  .component-preview-btn {
     display: flex;
     justify-content: flex-start;
     a {
@@ -83,18 +83,18 @@
     }
   }
 }
-.planets-list-wrapper {
+.list-wrapper {
   display: flex;
   align-items: center;
   a {
     margin: 0 40px;
   }
-  .planets-list {
+  .components-list {
     display: flex;
     flex-wrap: wrap;
     text-decoration: none;
 
-    .planet-item {
+    .component-item {
       opacity: 0.7;
       display: flex;
       flex: 20%;
@@ -126,7 +126,7 @@
 .btn-prev {
   background-image: url(../assets/image/arrow-left.svg);
 }
-.planet-btn {
+.control-btn {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

@@ -75,11 +75,11 @@ class Vehicles extends Component {
   render() {
     const maxPages = Math.ceil(this.state.count / 10);
     return (
-      <div className="planets">
+      <div className="vehicles">
         {this.state.selectedVehicleIsLoaded ? (
-          <div className="planets-preview">
+          <div className="component-preview">
             <img src={tattoine} alt={this.state.selectedVehicle.name} />
-            <div className="planets-preview-desc">
+            <div className="component-preview-desc">
               <h2>{this.state.selectedVehicle.name}</h2>
               <ul>
                 <li>Model: {this.state.selectedVehicle.model}</li>
@@ -111,7 +111,7 @@ class Vehicles extends Component {
           </div>
         )}
         {this.state.vehiclesIsLoaded && this.state.selectedVehicleIsLoaded ? (
-          <div className="planets-list-wrapper">
+          <div className="list-wrapper">
             <Link
               to={`/react-star-wars/vehicles/${
                 this.state.currentPage > 1
@@ -122,13 +122,13 @@ class Vehicles extends Component {
               <div
                 className={
                   this.state.prevPage
-                    ? "planet-btn btn-prev"
-                    : "planet-btn btn-prev btn-disabled"
+                    ? "control-btn btn-prev"
+                    : "control-btn btn-prev btn-disabled"
                 }
                 disabled={this.state.prevPage ? false : true}
               ></div>
             </Link>
-            <div className="planets-list">
+            <div className="components-list">
               <VehicleList
                 selectedVehicle={
                   this.state.selectedVehicle.url.match(/(\d+)/)[0]
@@ -148,8 +148,8 @@ class Vehicles extends Component {
               <div
                 className={
                   this.state.nextPage
-                    ? "planet-btn btn-next"
-                    : "planet-btn btn-next btn-disabled"
+                    ? "control-btn btn-next"
+                    : "control-btn btn-next btn-disabled"
                 }
                 disabled={this.state.nextPage ? false : true}
               ></div>
