@@ -52,7 +52,7 @@ class Vehicles extends Component {
   }
   //   // get selected vehicle from api
   onVehicleSelect = (id) => {
-    this.getPlanets(`vehicles/${id}/`).then((res) => {
+    this.getVehicles(`vehicles/${id}/`).then((res) => {
       console.log(res);
       this.setState({
         selectedVehicle: res.data,
